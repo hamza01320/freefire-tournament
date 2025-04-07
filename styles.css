@@ -1,0 +1,29 @@
+/* Add these to your existing CSS file */
+
+/* Navigation Active State */
+.nav-links .active {
+    color: #FFA500;
+    font-weight: bold;
+    border-bottom: 2px solid #FFA500;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .page-title {
+        font-size: 2rem;
+    }
+    
+    .squad-name {
+        font-size: 1.3rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .page-title {
+        font-size: 1.8rem;
+    }
+    
+    .squad-card {
+        padding: 15px;
+    }
+}
