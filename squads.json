@@ -1,11 +1,11 @@
 [
     {
-        "teamName": "Phoenix Warriors",
-        "region": "North America",
-        "captain": "FF_ProNinja",
-        "contact": "phoenix@example.com",
+        "teamName": "Ꭲᴇᴀᴍ Ꮮᴇɢᴇɴᴅꜱ",
+        "region": "Pakistan",
+        "captain": "M.Hamza",
+        "contact": "muhammadhamzaou509@gmail.com",
         "players": [
-            {"ign": "FF_ProNinja", "id": "12345678"},
+            {"ign": "TL HAMZA", "id": "12345678"},
             {"ign": "FF_Shadow", "id": "23456789"},
             {"ign": "FF_Blaze", "id": "34567890"},
             {"ign": "FF_Sniper", "id": "45678901"}
