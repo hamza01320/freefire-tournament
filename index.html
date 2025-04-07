@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Free Fire Tournament Hub</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
+        }
+
+        body {
+            background: #0a0a0a;
+            color: #fff;
+            overflow-x: hidden;
+        }
+
+        /* Header Styles */
+        .header {
+            background: linear-gradient(rgba(0,0,0,0.8), rgba(0,0,0,0.8)), url('https://picsum.photos/1920/1080?game');
+            min-height: 100vh;
+            background-size: cover;
+            background-position: center;
+            position: relative;
+        }
+
+        .navbar {
+            padding: 20px 50px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            animation: slideDown 1s;
+        }
+
+        .logo {
+            font-size: 2em;
+            color: #ff6b00;
+            text-shadow: 2px 2px 4px rgba(255,107,0,0.4);
+        }
+
+        .nav-links a {
+            color: #fff;
+            text-decoration: none;
+            margin-left: 30px;
+            transition: 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: #ff6b00;
+        }
+
+        /* Hero Section */
+        .hero {
+            text-align: center;
+            margin-top: 150px;
+            animation: float 3s ease-in-out infinite;
+        }
+
+        .hero h1 {
+            font-size: 4em;
+            color: #ff6b00;
+            text-shadow: 3px 3px 6px rgba(0,0,0,0.5);
+            margin-bottom: 20px;
+        }
+
+        /* Squad Section */
+        .squad-section {
+            padding: 80px 20px;
+            text-align: center;
+        }
+
+        .squad-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            padding: 30px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .squad-card {
+            background: rgba(255,255,255,0.05);
+            border-radius: 15px;
+            padding: 20px;
+            opacity: 0;
+            transform: translateY(50px);
+            transition: all 0.5s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .squad-card.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .squad-card:hover {
+            background: rgba(255,107,0,0.1);
+        }
+
+        .member-image {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            margin: 0 auto 20px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .member-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .role-badge {
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: #ff6b00;
+            color: #000;
+            padding: 5px 15px;
+            border-radius: 15px;
+            font-weight: bold;
+            font-size: 0.9em;
+        }
+
+        .stats {
+            margin: 15px 0;
+        }
+
+        .progress-bar {
+            background: rgba(255,255,255,0.1);
+            height: 5px;
+            border-radius: 3px;
+            margin: 10px 0;
+            overflow: hidden;
+        }
+
+        .progress {
+            background: #ff6b00;
+            height: 100%;
+            width: 0;
+            border-radius: 3px;
+            transition: width 1s ease-out;
+        }
+
+        .social-links {
+            margin-top: 15px;
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+        }
+
+        .social-links a {
+            color: #fff;
+            font-size: 1.2em;
+            transition: 0.3s;
+        }
+
+        .social-links a:hover {
+            color: #ff6b00;
+            transform: translateY(-3px);
+        }
+
+        /* Registration Form */
+        .registration-form {
+            max-width: 600px;
+            margin: 50px auto;
+            padding: 30px;
+            background: rgba(255,255,255,0.05);
+            border-radius: 15px;
+        }
+
+        .form-input {
+            width: 100%;
+            padding: 12px;
+            margin: 10px 0;
+            background: rgba(255,255,255,0.1);
+            border: none;
+            color: #fff;
+            border-radius: 5px;
+            transition: 0.3s;
+        }
+
+        .form-input:focus {
+            outline: 2px solid #ff6b00;
+            background: rgba(255,107,0,0.1);
+        }
+
+        .cta-button {
+            background: #ff6b00;
+            color: #000;
+            padding: 15px 40px;
+            border: none;
+            border-radius: 25px;
+            font-size: 1.1em;
+            cursor: pointer;
+            transition: 0.3s;
+            position: relative;
+            overflow: hidden;
+            margin-top: 15px;
+        }
+
+        .cta-button:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 15px #ff6b00;
+        }
+
+        .cta-button::after {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: rgba(255,255,255,0.2);
+            transform: rotate(45deg);
+            animation: spark 1.5s infinite;
+        }
+
+        .loading-dots {
+            display: none;
+            justify-content: center;
+            gap: 5px;
+        }
+
+        .dot {
+            width: 8px;
+            height: 8px;
+            background: #fff;
+            border-radius: 50%;
+            animation: bounce 1.4s infinite;
+        }
+
+        /* Animations */
+        @keyframes slideDown {
+            from { transform: translateY(-100%); }
+            to { transform: translateY(0); }
+        }
+
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+            100% { transform: translateY(0px); }
+        }
+
+        @keyframes spark {
+            0% { transform: translate(-100%, -100%) rotate(45deg); }
+            100% { transform: translate(100%, 100%) rotate(45deg); }
+        }
+
+        @keyframes bounce {
+            0%, 80%, 100% { transform: translateY(0); }
+            40% { transform: translateY(-10px); }
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <nav class="navbar">
+            <div class="logo">FF BATTLE ARENA</div>
+            <div class="nav-links">
+                <a href="#home">Home</a>
+                <a href="squads.html">Squads</a>
+				<a href="register.html">Register</a>
+            </div>
+        </nav>
+
+        <div class="hero">
+            <h1>DOMINATE THE BATTLEGROUND</h1>
+            <p>Prove your squad's worth and claim victory!</p>
+        </div>
+    </header>
+
+    <script>
+        // Smooth scroll for navigation
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // Scroll animation trigger
+        window.addEventListener('scroll', () => {
+            const squadCards = document.querySelectorAll('.squad-card');
+            squadCards.forEach((card, index) => {
+                const cardTop = card.getBoundingClientRect().top;
+                if (cardTop < window.innerHeight - 100) {
+                    setTimeout(() => {
+                        card.classList.add('visible');
+                        card.querySelectorAll('.progress').forEach(progress => {
+                            progress.style.width = progress.style.width;
+                        });
+                    }, index * 200);
+                }
+            });
+        });
+
+        // Form submission handler
+        const form = document.getElementById('registrationForm');
+        const loadingDots = document.querySelector('.loading-dots');
+        const buttonText = document.querySelector('.button-text');
+
+        form.addEventListener('submit', async (e) => {
+            e.preventDefault();
+
+            // Show loading animation
+            buttonText.style.display = 'none';
+            loadingDots.style.display = 'flex';
+
+            try {
+                const response = await fetch(form.action, {
+                    method: 'POST',
+                    body: new FormData(form),
+                    headers: {
+                        'Accept': 'application/json'
+                    }
+                });
+
+                if (response.ok) {
+                    alert('Registration successful! We will contact you soon.');
+                    form.reset();
+                } else {
+                    alert('Error submitting form. Please try again.');
+                }
+            } catch (error) {
+                alert('Network error. Please check your connection.');
+            } finally {
+                // Hide loading animation
+                buttonText.style.display = 'block';
+                loadingDots.style.display = 'none';
+            }
+        });
+
+        // Input validation
+        document.querySelectorAll('.form-input').forEach(input => {
+            input.addEventListener('input', () => {
+                if (input.checkValidity()) {
+                    input.style.background = 'rgba(255,255,255,0.1)';
+                } else {
+                    input.style.background = 'rgba(255,0,0,0.1)';
+                }
+            });
+        });
+    </script>
+</body>
+</html>
