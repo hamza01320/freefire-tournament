@@ -51,4 +51,17 @@
         ],
         "status": "confirmed"
     }
+	    {
+        "teamName": "Dragon Slayers",
+        "region": "Asia",
+        "captain": "FF_DragonHunter",
+        "contact": "dragons@example.com",
+        "players": [
+            {"ign": "FF_DragonHunter", "id": "90123456"},
+            {"ign": "FF_BladeMaster", "id": "01234567"},
+            {"ign": "FF_ArrowStorm", "id": "12345098"},
+            {"ign": "FF_ShieldWall", "id": "23456098"}
+        ],
+        "status": "confirmed"
+    },
 ]
