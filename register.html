@@ -1,0 +1,682 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Free Fire Squad Registration</title>
+    <link href="https://fonts.googleapis.com/css2?family=Oxanium:wght@400;600;700&family=Rajdhani:wght@500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #FF5F1F; /* Free Fire orange */
+            --secondary: #2A2A72; /* Dark blue */
+            --accent: #00B4D8; /* Cyan */
+            --dark: #1A1A2E;
+            --light: #F8F9FA;
+            --success: #4BB543;
+            --error: #FF3333;
+        }
+        
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        
+        body {
+            background-color: var(--dark);
+            background-image: 
+                radial-gradient(circle at 25% 25%, rgba(42, 42, 114, 0.8) 0%, transparent 50%),
+                radial-gradient(circle at 75% 75%, rgba(255, 95, 31, 0.6) 0%, transparent 50%);
+            font-family: 'Oxanium', cursive;
+            color: white;
+            min-height: 100vh;
+            padding: 0;
+        }
+        
+        /* Navigation Header */
+        .nav-header {
+            background: rgba(26, 26, 46, 0.9);
+            padding: 15px 0;
+            border-bottom: 2px solid var(--primary);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            backdrop-filter: blur(5px);
+        }
+        
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 20px;
+        }
+        
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            background: linear-gradient(to right, var(--primary), var(--accent));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-family: 'Rajdhani', sans-serif;
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 25px;
+        }
+        
+        .nav-link {
+            color: white;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            position: relative;
+            padding: 5px 0;
+        }
+        
+        .nav-link:hover {
+            color: var(--accent);
+        }
+        
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--primary);
+            transition: width 0.3s ease;
+        }
+        
+        .nav-link:hover::after {
+            width: 100%;
+        }
+        
+        .nav-link.active {
+            color: var(--primary);
+        }
+        
+        .nav-link.active::after {
+            width: 100%;
+            background: var(--accent);
+        }
+        
+        .container {
+            max-width: 800px;
+            margin: 30px auto;
+            background: rgba(26, 26, 46, 0.8);
+            border-radius: 16px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.36);
+            overflow: hidden;
+            animation: fadeIn 0.6s ease-out;
+            position: relative;
+        }
+        
+        .container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary), var(--accent));
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .header {
+            padding: 30px 30px 20px;
+            text-align: center;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            position: relative;
+        }
+        
+        .header h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+            background: linear-gradient(to right, var(--primary), var(--accent));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-family: 'Rajdhani', sans-serif;
+        }
+        
+        .header p {
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 1rem;
+            max-width: 80%;
+            margin: 0 auto;
+            line-height: 1.5;
+        }
+        
+        .required {
+            color: var(--error);
+            margin-left: 4px;
+        }
+        
+        .form-section {
+            margin-bottom: 24px;
+            padding-bottom: 24px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.4s ease;
+        }
+        
+        .form-section:last-child {
+            border-bottom: none;
+        }
+        
+        .section-title {
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin-bottom: 16px;
+            color: var(--accent);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-family: 'Rajdhani', sans-serif;
+            position: relative;
+            display: inline-block;
+        }
+        
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            left: 0;
+            width: 50px;
+            height: 3px;
+            background: linear-gradient(to right, var(--primary), var(--accent));
+            border-radius: 3px;
+        }
+        
+        .form-group {
+            margin-bottom: 16px;
+            animation: formGroupIn 0.4s ease-out;
+            animation-fill-mode: both;
+        }
+        
+        @keyframes formGroupIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-size: 0.95rem;
+            color: rgba(255, 255, 255, 0.9);
+            font-weight: 500;
+        }
+        
+        input[type="text"],
+        input[type="number"] {
+            width: 100%;
+            padding: 10px;
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 4px;
+            font-size: 0.95rem;
+            color: white;
+            transition: all 0.3s ease;
+        }
+        
+        /* Remove number input arrows */
+        input[type="number"]::-webkit-outer-spin-button,
+        input[type="number"]::-webkit-inner-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+        }
+        
+        input[type="number"] {
+            -moz-appearance: textfield;
+        }
+        
+        input[type="text"]:focus,
+        input[type="number"]:focus {
+            background: rgba(255, 255, 255, 0.15);
+            border-color: var(--accent);
+            outline: none;
+            box-shadow: 0 0 0 2px rgba(0, 180, 216, 0.2);
+        }
+        
+        .next-btn {
+            background-color: var(--primary);
+            color: white;
+            border: none;
+            padding: 10px 24px;
+            border-radius: 4px;
+            font-size: 0.95rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            float: right;
+            font-family: 'Rajdhani', sans-serif;
+        }
+        
+        .next-btn:hover {
+            background-color: #e6500b;
+            box-shadow: 0 1px 2px 0 rgba(255, 95, 31, 0.3), 0 1px 3px 1px rgba(255, 95, 31, 0.15);
+        }
+        
+        .submit-btn {
+            background-color: var(--accent);
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 4px;
+            font-size: 0.95rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            width: 100%;
+            margin-top: 16px;
+            font-family: 'Rajdhani', sans-serif;
+        }
+        
+        .submit-btn:hover {
+            background-color: #0095b6;
+            box-shadow: 0 1px 2px 0 rgba(0, 180, 216, 0.3), 0 1px 3px 1px rgba(0, 180, 216, 0.15);
+        }
+        
+        .clearfix::after {
+            content: "";
+            display: table;
+            clear: both;
+        }
+        
+        .player-section {
+            background-color: rgba(0, 180, 216, 0.1);
+            padding: 16px;
+            border-radius: 8px;
+            margin-bottom: 16px;
+            border: 1px solid rgba(0, 180, 216, 0.2);
+            animation: fadeInUp 0.5s ease-out;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .player-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 4px;
+            height: 100%;
+            background: linear-gradient(to bottom, var(--primary), var(--accent));
+        }
+        
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .player-section h3 {
+            margin-top: 0;
+            color: var(--accent);
+            font-weight: 600;
+            margin-bottom: 15px;
+            font-family: 'Rajdhani', sans-serif;
+        }
+        
+        /* Alert Popup */
+        .alert-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.7);
+            z-index: 1000;
+            display: none;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .alert-box {
+            background: rgba(26, 26, 46, 0.95);
+            border-radius: 8px;
+            padding: 24px;
+            width: 90%;
+            max-width: 400px;
+            text-align: center;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            position: relative;
+            overflow: hidden;
+            animation: fadeIn 0.3s ease-out;
+        }
+
+        .alert-box::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(to right, var(--primary), var(--accent));
+        }
+
+        .alert-icon {
+            font-size: 2.5rem;
+            color: var(--primary);
+            margin-bottom: 16px;
+        }
+
+        .alert-title {
+            font-size: 1.5rem;
+            color: var(--accent);
+            margin-bottom: 8px;
+            font-family: 'Rajdhani', sans-serif;
+        }
+
+        .alert-message {
+            font-size: 1rem;
+            color: rgba(255, 255, 255, 0.9);
+            margin-bottom: 24px;
+            line-height: 1.5;
+        }
+
+        .alert-button {
+            background: var(--primary);
+            color: white;
+            border: none;
+            padding: 10px 24px;
+            border-radius: 4px;
+            font-size: 0.95rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-family: 'Rajdhani', sans-serif;
+        }
+
+        .alert-button:hover {
+            background: #e6500b;
+        }
+        
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .nav-container {
+                flex-direction: column;
+                gap: 15px;
+            }
+            
+            .nav-links {
+                gap: 15px;
+            }
+            
+            .container {
+                margin: 15px auto;
+            }
+            
+            .header h1 {
+                font-size: 2rem;
+            }
+            
+            .header p {
+                max-width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation Header -->
+    <header class="nav-header">
+        <div class="nav-container">
+            <div class="logo">FF BATTLE ARENA</div>
+            <nav class="nav-links">
+                <a href="index.html" class="nav-link">Home</a>
+                <a href="squads.html" class="nav-link">Squads</a>
+                <a href="register.html" class="nav-link active">Register</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <div class="container">
+        <div class="header">
+            <h1>Free Fire Squad Registration</h1>
+            <p>Register your squad for the upcoming tournament and compete for glory!</p>
+        </div>
+        
+        <form id="squadRegistrationForm" action="https://formspree.io/f/xyzenlzr" method="POST">
+            <!-- Squad Information -->
+            <div class="form-section">
+                <h2 class="section-title">Squad Information</h2>
+                
+                <div class="form-group">
+                    <label for="squadName">Squad Name <span class="required">*</span></label>
+                    <input type="text" id="squadName" name="squadName" required>
+                </div>
+            </div>
+            
+            <!-- Squad Leader Information -->
+            <div class="form-section">
+                <h2 class="section-title">Squad Leader Information</h2>
+                
+                <div class="player-section">
+                    <h3>Leader Details</h3>
+                    
+                    <div class="form-group">
+                        <label for="leaderName">Real Name <span class="required">*</span></label>
+                        <input type="text" id="leaderName" name="leaderName" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="leaderUID">In-Game UID <span class="required">*</span></label>
+                        <input type="number" id="leaderUID" name="leaderUID" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="leaderMobile">Mobile Number <span class="required">*</span></label>
+                        <input type="number" id="leaderMobile" name="leaderMobile" required>
+                    </div>
+                </div>
+                
+                <div class="clearfix">
+                    <button type="button" class="next-btn" onclick="showPlayer2()">Next</button>
+                </div>
+            </div>
+            
+            <!-- Player 2 Information (initially hidden) -->
+            <div class="form-section" id="player2Section" style="display: none;">
+                <h2 class="section-title">Player 2 Information</h2>
+                
+                <div class="player-section">
+                    <h3>Player 2 Details</h3>
+                    
+                    <div class="form-group">
+                        <label for="player2Name">Real Name <span class="required">*</span></label>
+                        <input type="text" id="player2Name" name="player2Name" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="player2UID">In-Game UID <span class="required">*</span></label>
+                        <input type="number" id="player2UID" name="player2UID" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="player2Mobile">Mobile Number <span class="required">*</span></label>
+                        <input type="number" id="player2Mobile" name="player2Mobile" required>
+                    </div>
+                </div>
+                
+                <div class="clearfix">
+                    <button type="button" class="next-btn" onclick="showPlayer3()">Next</button>
+                </div>
+            </div>
+            
+            <!-- Player 3 Information (initially hidden) -->
+            <div class="form-section" id="player3Section" style="display: none;">
+                <h2 class="section-title">Player 3 Information</h2>
+                
+                <div class="player-section">
+                    <h3>Player 3 Details</h3>
+                    
+                    <div class="form-group">
+                        <label for="player3Name">Real Name <span class="required">*</span></label>
+                        <input type="text" id="player3Name" name="player3Name" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="player3UID">In-Game UID <span class="required">*</span></label>
+                        <input type="number" id="player3UID" name="player3UID" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="player3Mobile">Mobile Number <span class="required">*</span></label>
+                        <input type="number" id="player3Mobile" name="player3Mobile" required>
+                    </div>
+                </div>
+                
+                <div class="clearfix">
+                    <button type="button" class="next-btn" onclick="showPlayer4()">Next</button>
+                </div>
+            </div>
+            
+            <!-- Player 4 Information (initially hidden) -->
+            <div class="form-section" id="player4Section" style="display: none;">
+                <h2 class="section-title">Player 4 Information</h2>
+                
+                <div class="player-section">
+                    <h3>Player 4 Details</h3>
+                    
+                    <div class="form-group">
+                        <label for="player4Name">Real Name <span class="required">*</span></label>
+                        <input type="text" id="player4Name" name="player4Name" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="player4UID">In-Game UID <span class="required">*</span></label>
+                        <input type="number" id="player4UID" name="player4UID" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="player4Mobile">Mobile Number <span class="required">*</span></label>
+                        <input type="number" id="player4Mobile" name="player4Mobile" required>
+                    </div>
+                </div>
+                
+                <button type="submit" class="submit-btn">Submit Squad Registration</button>
+            </div>
+        </form>
+    </div>
+
+    <!-- Alert Popup -->
+    <div class="alert-overlay" id="alertOverlay">
+        <div class="alert-box">
+            <div class="alert-icon">⚠️</div>
+            <h3 class="alert-title">Attention Needed</h3>
+            <p class="alert-message" id="alertMessage">Please fill all required fields for leader</p>
+            <button class="alert-button" onclick="hideAlert()">OK</button>
+        </div>
+    </div>
+
+    <script>
+        // Show player sections sequentially
+        function showPlayer2() {
+            if (validateSection('leader')) {
+                document.getElementById('player2Section').style.display = 'block';
+                scrollToSection('player2Section');
+            }
+        }
+        
+        function showPlayer3() {
+            if (validateSection('player2')) {
+                document.getElementById('player3Section').style.display = 'block';
+                scrollToSection('player3Section');
+            }
+        }
+        
+        function showPlayer4() {
+            if (validateSection('player3')) {
+                document.getElementById('player4Section').style.display = 'block';
+                scrollToSection('player4Section');
+            }
+        }
+        
+        // Validate section before proceeding
+        function validateSection(prefix) {
+            const name = document.getElementById(`${prefix}Name`).value;
+            const uid = document.getElementById(`${prefix}UID`).value;
+            const mobile = document.getElementById(`${prefix}Mobile`).value;
+            
+            if (!name || !uid || !mobile) {
+                showAlert(`Please fill all required fields for ${prefix.replace('player', 'Player ')}`);
+                return false;
+            }
+            return true;
+        }
+        
+        // Smooth scroll to section
+        function scrollToSection(sectionId) {
+            const section = document.getElementById(sectionId);
+            window.scrollTo({
+                top: section.offsetTop - 20,
+                behavior: 'smooth'
+            });
+        }
+        
+        // Show alert
+        function showAlert(message) {
+            document.getElementById('alertMessage').textContent = message;
+            document.getElementById('alertOverlay').style.display = 'flex';
+        }
+
+        // Hide alert
+        function hideAlert() {
+            document.getElementById('alertOverlay').style.display = 'none';
+        }
+        
+        // Form submission
+        document.getElementById('squadRegistrationForm').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            
+            if (!validateSection('player4')) return;
+            
+            try {
+                const formData = new FormData(this);
+                formData.append('_subject', 'New Free Fire Squad Registration');
+                
+                const response = await fetch(this.action, {
+                    method: 'POST',
+                    body: formData,
+                    headers: {
+                        'Accept': 'application/json'
+                    }
+                });
+                
+                if (response.ok) {
+                    showAlert('Registration successful! Your squad has been registered for the tournament.');
+                    setTimeout(() => {
+                        this.reset();
+                        ['player2Section', 'player3Section', 'player4Section'].forEach(id => {
+                            document.getElementById(id).style.display = 'none';
+                        });
+                        hideAlert();
+                        window.scrollTo({ top: 0, behavior: 'smooth' });
+                    }, 3000);
+                } else {
+                    throw new Error('Form submission failed');
+                }
+            } catch (error) {
+                console.error('Error:', error);
+                showAlert('There was an error submitting your registration. Please try again.');
+            }
+        });
+    </script>
+</body>
+</html>
