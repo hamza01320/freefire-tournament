@@ -1,29 +1,283 @@
-/* Add these to your existing CSS file */
+/* styles.css - Complete CSS for Free Fire Tournament */
 
-/* Navigation Active State */
-.nav-links .active {
-    color: #FFA500;
-    font-weight: bold;
-    border-bottom: 2px solid #FFA500;
+/* Base Styles */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #0f1923;
+    color: #ffffff;
+    margin: 0;
+    padding: 0;
+    line-height: 1.6;
 }
 
-/* Responsive adjustments */
+/* Navigation Bar */
+.navbar {
+    background-color: #1a2a3a;
+    padding: 15px 0;
+    border-bottom: 3px solid #ff4655;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+.nav-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 20px;
+}
+
+.logo {
+    color: #ff4655;
+    font-size: 1.8rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    text-shadow: 0 0 10px rgba(255, 70, 85, 0.5);
+}
+
+.nav-links {
+    display: flex;
+    gap: 30px;
+}
+
+.nav-links a {
+    color: white;
+    text-decoration: none;
+    font-size: 1.1rem;
+    transition: all 0.3s ease;
+    padding: 5px 10px;
+    border-radius: 4px;
+}
+
+.nav-links a:hover {
+    color: #ff4655;
+    background-color: rgba(255, 70, 85, 0.1);
+}
+
+.nav-links a.active {
+    color: #ff4655;
+    font-weight: bold;
+    border-bottom: 2px solid #ff4655;
+}
+
+/* Main Content Container */
+.squads-container {
+    max-width: 1200px;
+    margin: 30px auto;
+    padding: 0 20px;
+}
+
+.page-title {
+    text-align: center;
+    color: #ff4655;
+    margin: 30px 0;
+    font-size: 2.5rem;
+    text-shadow: 0 0 15px rgba(255, 70, 85, 0.7);
+    position: relative;
+}
+
+.page-title::after {
+    content: '';
+    display: block;
+    width: 100px;
+    height: 3px;
+    background: #ff4655;
+    margin: 10px auto;
+    box-shadow: 0 0 10px #ff4655;
+}
+
+/* Squads Grid Layout */
+.squads-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 25px;
+    margin-top: 40px;
+}
+
+/* Squad Card Styling */
+.squad-card {
+    background: linear-gradient(145deg, #1a2a3a, #16202d);
+    border-radius: 10px;
+    padding: 20px;
+    border: 2px solid #ff4655;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.squad-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 30px rgba(255, 70, 85, 0.2);
+}
+
+.squad-card::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, rgba(255,70,85,0.1) 0%, rgba(255,70,85,0) 70%);
+    transition: all 0.5s ease;
+    opacity: 0;
+}
+
+.squad-card:hover::before {
+    opacity: 1;
+}
+
+.squad-name {
+    color: #ff4655;
+    font-size: 1.5rem;
+    margin-bottom: 15px;
+    text-align: center;
+    padding-bottom: 10px;
+    border-bottom: 1px solid rgba(255, 70, 85, 0.5);
+    text-shadow: 0 0 10px rgba(255, 70, 85, 0.3);
+}
+
+.squad-info {
+    margin-bottom: 20px;
+}
+
+.squad-info p {
+    margin: 10px 0;
+    color: #e0e0e0;
+    font-size: 0.95rem;
+}
+
+.squad-info span {
+    color: #ff4655;
+    font-weight: bold;
+}
+
+/* Players List Styling */
+.players-list {
+    margin-top: 20px;
+}
+
+.player {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: rgba(255, 70, 85, 0.1);
+    padding: 10px;
+    margin-bottom: 8px;
+    border-radius: 5px;
+    transition: all 0.2s ease;
+}
+
+.player:hover {
+    background: rgba(255, 70, 85, 0.2);
+    transform: translateX(5px);
+}
+
+.player-ign {
+    font-weight: bold;
+    color: #ffffff;
+}
+
+.player-id {
+    font-family: 'Courier New', monospace;
+    color: #ff4655;
+    font-size: 0.9rem;
+}
+
+/* Status Badges */
+.status {
+    text-align: center;
+    margin-top: 20px;
+    padding: 8px;
+    border-radius: 5px;
+    font-weight: bold;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    font-size: 0.8rem;
+}
+
+.confirmed {
+    background: rgba(0, 255, 0, 0.15);
+    color: #00ff00;
+    border: 1px solid rgba(0, 255, 0, 0.3);
+}
+
+.pending {
+    background: rgba(255, 255, 0, 0.15);
+    color: #ffff00;
+    border: 1px solid rgba(255, 255, 0, 0.3);
+}
+
+/* Loading and Error States */
+.loading {
+    text-align: center;
+    color: #ff4655;
+    font-size: 1.2rem;
+    padding: 50px 0;
+    grid-column: 1 / -1;
+}
+
+.error {
+    text-align: center;
+    color: #ff3333;
+    padding: 30px;
+    grid-column: 1 / -1;
+    background: rgba(255, 0, 0, 0.1);
+    border-radius: 5px;
+    border: 1px solid #ff3333;
+}
+
+/* Responsive Design */
 @media (max-width: 768px) {
-    .page-title {
-        font-size: 2rem;
+    .nav-container {
+        flex-direction: column;
+        gap: 15px;
     }
     
-    .squad-name {
-        font-size: 1.3rem;
+    .nav-links {
+        width: 100%;
+        justify-content: space-around;
+        gap: 10px;
+    }
+    
+    .squads-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .page-title {
+        font-size: 2rem;
     }
 }
 
 @media (max-width: 480px) {
-    .page-title {
-        font-size: 1.8rem;
+    .logo {
+        font-size: 1.5rem;
+    }
+    
+    .nav-links a {
+        font-size: 0.9rem;
     }
     
     .squad-card {
         padding: 15px;
     }
 }
+
+/* Animations */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.squad-card {
+    animation: fadeIn 0.5s ease forwards;
+}
+
+/* Delay animations for each card */
+.squad-card:nth-child(1) { animation-delay: 0.1s; }
+.squad-card:nth-child(2) { animation-delay: 0.2s; }
+.squad-card:nth-child(3) { animation-delay: 0.3s; }
+.squad-card:nth-child(4) { animation-delay: 0.4s; }
