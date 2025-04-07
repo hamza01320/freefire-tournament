@@ -25,6 +25,20 @@
         ],
         "status": "pending"
     },
+{
+        "teamName": "Storm Riders",
+        "region": "Europe",
+        "captain": "FF_Thunder",
+        "contact": "storm@example.com",
+        "players": [
+            {"ign": "FF_Thunder", "id": "56789012"},
+            {"ign": "FF_Lightning", "id": "67890123"},
+            {"ign": "FF_Rain", "id": "78901234"},
+            {"ign": "FF_Wind", "id": "89012345"}
+        ],
+        "status": "pending"
+    },
+
     {
         "teamName": "Dragon Slayers",
         "region": "Asia",
