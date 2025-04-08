@@ -13,17 +13,17 @@
         "status": "confirmed"
     },
     {
-        "teamName": "Storm Riders",
-        "region": "Europe",
-        "captain": "FF_Thunder",
-        "contact": "storm@example.com",
+        "teamName": "RTX ESPORTS",
+        "region": "Pakistan",
+        "captain": "Irzum Aamir",
+        "contact": "Contact on WhatsApp",
         "players": [
-            {"ign": "FF_Thunder", "id": "56789012"},
-            {"ign": "FF_Lightning", "id": "67890123"},
-            {"ign": "FF_Rain", "id": "78901234"},
-            {"ign": "FF_Wind", "id": "89012345"}
+            {"ign": "Irzum Aamir", "id": "1596384379"},
+            {"ign": "Waqar", "id": "7227081283"},
+            {"ign": "Shayan", "id": "5390488368"},
+            {"ign": "Ahmed", "id": "2699377658"}
         ],
-        "status": "pending"
+        "status": "confirmed"
     },
 {
         "teamName": "Storm Riders",
