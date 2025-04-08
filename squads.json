@@ -16,7 +16,7 @@
         "teamName": "RTX ESPORTS",
         "region": "Pakistan",
         "captain": "Irzum Aamir",
-        "contact": "Contact on WhatsApp",
+        "contact": "on WhatsApp Group",
         "players": [
             {"ign": "Irzum Aamir", "id": "1596384379"},
             {"ign": "Waqar", "id": "7227081283"},
@@ -26,29 +26,29 @@
         "status": "confirmed"
     },
 {
-        "teamName": "Storm Riders",
-        "region": "Europe",
-        "captain": "FF_Thunder",
-        "contact": "storm@example.com",
+        "teamName": "BOSS OFCL PK",
+        "region": "Pakistan",
+        "captain": "MUJAHID ALI",
+        "contact": "on whatsApp Group",
         "players": [
-            {"ign": "FF_Thunder", "id": "56789012"},
-            {"ign": "FF_Lightning", "id": "67890123"},
-            {"ign": "FF_Rain", "id": "78901234"},
-            {"ign": "FF_Wind", "id": "89012345"}
+            {"ign": "MUJAHID ALI", "id": "1384751433"},
+            {"ign": "HUZAFA", "id": "335496292"},
+            {"ign": "SABIR", "id": "455073586"},
+            {"ign": "RAHIB", "id": "4751867008"}
         ],
-        "status": "pending"
+        "status": "confirmed"
     },
 
     {
-        "teamName": "Dragon Slayers",
-        "region": "Asia",
-        "captain": "FF_DragonHunter",
+        "teamName": "SCRIPT USERS",
+        "region": "Pakistan",
+        "captain": "HUZAIFA",
         "contact": "dragons@example.com",
         "players": [
-            {"ign": "FF_DragonHunter", "id": "90123456"},
-            {"ign": "FF_BladeMaster", "id": "01234567"},
-            {"ign": "FF_ArrowStorm", "id": "12345098"},
-            {"ign": "FF_ShieldWall", "id": "23456098"}
+            {"ign": "HUZAIFA", "id": "2852257332"},
+            {"ign": "SUIMAIN", "id": "2852257332"},
+            {"ign": "AYAN", "id": "2679026351"},
+            {"ign": "MUSTAFA", "id": "2677934907"}
         ],
         "status": "confirmed"
     }
