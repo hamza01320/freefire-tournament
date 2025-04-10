@@ -38,7 +38,6 @@
         ],
         "status": "confirmed"
     },
-
     {
         "teamName": "SCRIPT USERS",
         "region": "Pakistan",
@@ -51,5 +50,19 @@
             {"ign": "MUSTAFA", "id": "2677934907"}
         ],
         "status": "confirmed"
+    },
+    {
+        "teamName": "Noobs Be Gone",
+        "region": "Pakistan",
+        "captain": "Mohsin",
+        "contact": "on Whatsapp Group",
+        "players": [
+            {"ign": "Mohsin", "id": "3762101740"},
+            {"ign": "Muhammad Haris Arain", "id": "4026568400"},
+            {"ign": "Abdul Rehman", "id": "3287841094"},
+            {"ign": "Atif Arain", "id": "6007702427"}
+        ],
+        "status": "confirmed"
     }
+
 ]
