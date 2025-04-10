@@ -13,6 +13,19 @@
         "status": "confirmed"
     },
     {
+        "teamName": "Ꭲᴇᴀᴍ Ꮮᴇɢᴇɴᴅꜱ",
+        "region": "Pakistan",
+        "captain": "Muhammad Hamza",
+        "contact": "muhammadhamzaou509@gmail.com",
+        "players": [
+            {"ign": "TL Hamza", "id": "5042669505"},
+            {"ign": "TL Waseem", "id": "4252516450"},
+            {"ign": "TL Sahil", "id": "7120478477"},
+            {"ign": "TL Toxic", "id": "6371886526"}
+        ],
+        "status": "confirmed"
+    },
+    {
         "teamName": "RTX ESPORTS",
         "region": "Pakistan",
         "captain": "Irzum Aamir",
@@ -25,7 +38,7 @@
         ],
         "status": "confirmed"
     },
-{
+    {
         "teamName": "BOSS OFCL PK",
         "region": "Pakistan",
         "captain": "MUJAHID ALI",
